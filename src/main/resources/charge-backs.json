@@ -1,0 +1,15 @@
+[
+	{
+		"CustomerID": "1312321",
+		"ProductId": "12312312312",
+		"ProductPrice": "1232131231",
+		"Startdate": "12312312312",
+		"rejectReasons": "1312312312"
+	},{
+		"CustomerID": "12321312312",
+		"ProductId": "12321312312",
+		"ProductPrice": "123123312321",
+		"Startdate": "123213213",
+		"rejectReasons": "1231231312"
+	}
+]

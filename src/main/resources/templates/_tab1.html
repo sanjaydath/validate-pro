@@ -1,0 +1,158 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class="container">
+     <div class="row card border-info mb-3" style="width: 100%" >
+      	<div class="card-header">Chargebacks Upload</div>
+    	<div class="card-body text-info">
+
+            <form method="POST" enctype="multipart/form-data" action="/EDI844">
+                <div class="form-group">
+                	<div>
+                		<input type="radio" id="bidaward" name="fileType" value="bidaward" checked="checked" >
+                		<label for="bidaward">Bid Award</label><br>
+                		<input type="radio" id="edi844" name="fileType" value="edi844" >
+                		<label for="edi844">EDI844</label><br>			
+                	</div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="file">
+                        <label class="custom-file-label" for="customFile">Upload EDI844/BidAward file</label>
+                    </div>
+                </div>
+				
+                <button class="btn btn-info" type="submit">Upload</button>
+                <br>
+               
+            </form>
+
+        </div>
+    </div>
+    
+  <!--   <div class="row card border-info mb-3" style="width: 100%" >
+      	<div class="card-header">Bid Award Upload</div>
+    	<div class="card-body text-info">
+
+            <form method="POST" enctype="multipart/form-data" action="/EDI844">
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="file">
+                        <label class="custom-file-label" for="customFile">Upload Bid Award file</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-info" type="submit">Upload</button>
+                <br>
+            </form>
+
+        </div>
+    </div>
+ -->
+</div>
+<br>
+<div class="container">
+  <div class="row card border-info mb-3" style="width: 100%" >
+  <div class="card-header">EDI844 Chargebacks</div>
+  <div class="card-body text-info">
+  	<table id="chargeBacks" class="table table-bordered table-responsive" style="width: 100%">
+                <thead>
+                <tr>
+                    <th class="card-title">File Name</th>
+                    <th class="card-title">Date</th>
+                    <th class="card-title">Total Records</th>
+                    <th class="card-title">Rejects</th>
+                </tr>
+                </thead>
+                <!-- <tfoot>
+                <tr>
+                    <th>File Name</th>
+                    <th>Date</th>
+                    <th>Total Records</th>
+                    <th>Rejects</th>
+                </tr>
+                </tfoot> -->
+            </table>
+    
+  </div>
+</div>
+
+
+    <!-- <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <h3>Datatable using list of Arrays in data parameter</h3>
+            <table id="exampleArray" class="table table-bordered table-responsive" style="width: 100%">
+                <thead>
+                <tr>
+                    <th style="width:20%">File Name</th>
+                    <th style="width:20%">Date</th>
+                    <th style="width:20%">Total Records</th>
+                    <th style="width:20%">Rejects</th>
+                    
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>File Name</th>
+                    <th>Date</th>
+                    <th>Total Records</th>
+                    <th>Rejects</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div> -->
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/datatable/datatables.js}"></script>
+<script th:src="@{assets/custom-file-input/bs-custom-file-input.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+
+<script>
+	bsCustomFileInput.init();
+    $('#chargeBacks').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "/chargeBacks",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        },
+        "columns": [
+            {"data": "name", "width": "20%",
+                "render": function(data, type, row, meta){
+                   if(type === 'display'){
+                       data = '<a href="fileDetail/' + data + '" target="_blank">' + data + '</a>';
+                	  /*  data = '<a href="tab2" target="_blank">' + data + '</a>'; */
+                   }
+                   return data;
+                 }},
+            {"data": "startDate", "width": "20%"},
+            {"data": "totalRecords","width": "20%"},
+            {"data": "totalRejects", "width": "20%"},
+            
+        ]
+    });
+    
+    $('#exampleArray').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "/employees/array",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        }
+    });
+    
+    
+</script>
+</body>
+</html>

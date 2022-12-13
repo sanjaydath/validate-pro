@@ -1,0 +1,62 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<h2>Contracts</h2>
+	<br>
+	<div class="container">
+		<div class="row card border-info mb-3" style="width: 100%" >
+		  <div class="card-header">Contracts</div>
+		  <div class="card-body text-info">
+				<table id="contracts" class="table table-bordered table-responsive"
+					style="width: 100%">
+					<thead>
+						<tr class="card-title" >
+							<th>Contract ID</th>
+							<th>Customer ID</th>
+							<th>Customer Name</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>Product Price</th>
+							<th>Product ID</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		</div>
+	
+		
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{assets/datatable/datatables.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+
+	<script>
+    $('#contracts').DataTable({
+        "processing": false,
+        "serverSide": true,
+        "ajax": {
+            "url": "/contracts",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        },
+        "columns": [
+            {"data": "ContractId", "width": "5%"},
+            {"data": "CustomerID","width": "5%"},
+            {"data": "customerName", "width": "25%"},
+            {"data": "Startdate", "width": "10%"},
+            {"data": "Enddate", "width": "10%"},
+            {"data": "ProductPrice", "width": "5%"},
+            {"data": "ProductId", "width": "5%"}
+           
+        ]
+    });
+    
+   
+</script>
+</body>
+</html>

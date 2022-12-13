@@ -1,0 +1,143 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<h2>Chargebacks</h2>
+	<br>
+	<div class="container">
+		<div class="row card border-info mb-3" style="width: 100%" >
+		  <div class="card-header">Summary</div>
+		  <div class="card-body text-info">
+				<table id="example1" class="table table-bordered table-responsive"
+					style="width: 100%">
+					<thead>
+						<tr class="card-title" >
+							<th>Header Data</th>
+							<th>Count by Reject Reason</th>
+						</tr>
+					</thead>
+					<tfoot>
+                <tr>
+                    <th>File Name</th>
+                    <th>Date</th>
+                    <th>Total Records</th>
+                    <th>Rejects</th>
+                </tr>
+                </tfoot>
+				</table>
+			</div>
+		</div>
+		</div>
+		
+		
+		<div class="container">
+		<div class="row card border-info mb-3" style="width: 100%" >
+		  <div class="card-header">Item Level Data</div>
+		  <div class="card-body text-info">
+				<table id="example2" class="table table-bordered table-responsive"
+					style="width: 100%">
+					<thead>
+						<tr class="card-title" >
+							<th>Reject Item</th>
+							<th>Reasons</th>
+						</tr>
+					</thead>
+					<tfoot>
+                <tr>
+                    <th>File Name</th>
+                    <th>Date</th>
+                    <th>Total Records</th>
+                    <th>Rejects</th>
+                </tr>
+                </tfoot>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <h3>Datatable using list of Arrays in data parameter</h3>
+            <table id="exampleArray" class="table table-bordered table-responsive" style="width: 100%">
+                <thead>
+                <tr>
+                    <th style="width:20%">File Name</th>
+                    <th style="width:20%">Date</th>
+                    <th style="width:20%">Total Records</th>
+                    <th style="width:20%">Rejects</th>
+                    
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>File Name</th>
+                    <th>Date</th>
+                    <th>Total Records</th>
+                    <th>Rejects</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+	</div>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{assets/datatable/datatables.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+
+	<script>
+    $('#example1').DataTable({
+        "processing": false,
+        "serverSide": true,
+        "ajax": {
+            "url": "/headerData",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        },
+        "columns": [
+            {"data": "name", "width": "20%"},
+            {"data": "position","width": "20%"},
+            {"data": "office", "width": "20%"},
+            {"data": "start_date", "width": "20%"},
+            {"data": "salary", "width": "20%"}
+        ]
+    });
+    
+    $('#example2').DataTable({
+        "processing": false,
+        "serverSide": true,
+        "ajax": {
+            "url": "/itemData",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        },
+        "columns": [
+            {"data": "name", "width": "20%"},
+            {"data": "position","width": "20%"},
+            {"data": "office", "width": "20%"},
+            {"data": "start_date", "width": "20%"},
+            {"data": "salary", "width": "20%"}
+        ]
+    });
+
+    $('#exampleArray').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "/employees/array",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        }
+    });
+</script>
+</body>
+</html>

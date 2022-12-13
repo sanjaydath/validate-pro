@@ -1,0 +1,94 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<h2>Chargebacks</h2>
+	<br>
+	<div class="container">
+		<div class="row card border-info mb-3" style="width: 100%" >
+		  <div class="card-header">Summary</div>
+		  <div class="card-body text-info">
+				<table id="summary" class="table table-bordered table-responsive"
+					style="width: 100%">
+					<thead>
+						<tr class="card-title" >
+							<th>Header Data</th>
+							<th>Count by Reject Reason</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		</div>
+		
+		
+		<br>
+		<div class="container">
+		<div class="row card border-info mb-3" style="width: 100%" >
+		  <div class="card-header">Item Level Data</div>
+		  <div class="card-body text-info">
+				<table id="items" class="table table-bordered table-responsive"
+					style="width: 100%">
+					<thead>
+						<tr class="card-title" >
+							<th>Customer ID</th>
+							<th>Product ID</th>
+							<th>Product Price</th>
+							<th>Date</th>
+							<th>Reject Reasons</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		</div>
+	<script th:src="@{../webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{../webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{../webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{../assets/datatable/datatables.js}"></script>
+	<script th:src="@{../webjars/popper.js/umd/popper.min.js}"></script>
+
+	<script>
+	$('#summary').DataTable({
+        "processing": false,
+        "serverSide": true,
+        "ajax": {
+            "url": "/headerData",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        },
+        "columns": [
+            {"data": "name", "width": "20%"},
+            {"data": "position","width": "20%"},
+            {"data": "office", "width": "20%"},
+            {"data": "start_date", "width": "20%"},
+            {"data": "salary", "width": "20%"}
+        ]
+    });
+    
+    $('#items').DataTable({
+        "processing": false,
+        "serverSide": true,
+        "ajax": {
+            "url": "/itemData",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        },
+        "columns": [
+            {"data": "CustomerID", "width": "20%"},
+            {"data": "ProductId","width": "20%"},
+            {"data": "ProductPrice", "width": "20%"},
+            {"data": "Startdate", "width": "20%"},
+            {"data": "rejectReasons", "width": "40%"}
+        ]
+    });
+   
+</script>
+</body>
+</html>

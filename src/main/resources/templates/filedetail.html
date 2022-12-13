@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>ValidatePro</title>
+
+<link th:rel="stylesheet"
+	th:href="@{../webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+<link th:rel="stylesheet"
+	th:href="@{../assets/datatable/datatables.css}" />
+</head>
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">ValidatePro</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<div th:if="${username}">
+					<h2 th:text="${username}" />
+				</div>
+
+				<ul class="navbar-nav ml-auto">
+
+					<li class="nav-item active"><a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Guide</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col">
+
+				<ul class="nav nav-pills nav-fill" id="myTabs">
+					<li class="nav-item"><a href="#tab1" data-url="/tab1"
+						class="nav-link">Envelopes</a></li>
+					<li class="nav-item"><a href="#tab2" data-url="/tab2"
+						class="nav-link active">Chargeback File Details</a></li>
+					<li class="nav-item"><a href="#tab3" data-url="/tab3"
+						class="nav-link">Contracts</a></li>
+				</ul>
+
+				<br>
+				<div th:if="${message}">
+					<h2 class="bg-success" th:text="${message}" />
+				</div>
+
+				<div class="tab-content pt-3">
+					<div class="tab-pane" id="tab1"></div>
+					<div class="tab-pane active" id="tab2"></div>
+					<div class="tab-pane" id="tab3"></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+	<script>
+    $('#myTabs a').click(function (e) {
+        e.preventDefault();
+
+        var url = $(this).attr("data-url");
+        var href = this.hash;
+        var pane = $(this);
+
+        // ajax load from data-url
+        $(href).load(url, function (result) {
+            pane.tab('show');
+        });
+    });
+    
+    $('#myChildTabs a').click(function (e) {
+        e.preventDefault();
+
+        var url = $(this).attr("data-url");
+        var href = this.hash;
+        var pane = $(this);
+
+        // ajax load from data-url
+        $(href).load(url, function (result) {
+            pane.tab('show');
+        });
+    });
+    
+
+    // load first tab content
+    $('#tab2').load($('.nav-link.active').attr("data-url"), function (result) {
+    });
+
+</script>
+
+</body>
+</html>
