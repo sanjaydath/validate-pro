@@ -21,10 +21,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<div th:if="${username}">
-					<h2 th:text="${username}" />
-				</div>
-
+				
 				<ul class="navbar-nav ml-auto">
 
 					<li class="nav-item active"><a class="nav-link" href="#">Home
@@ -44,7 +41,10 @@
 	<h2>Chargebacks</h2>
 	<br>
 		<div class="row card border-info mb-3" style="width: 100%" >
-		  <div class="card-header">Summary</div>
+		  <div class="card-header">Summary :
+		  <h2 class="bg-success" th:text="${fileName}"></h2>
+		  </div>
+		  
 		  <div class="card-body text-info">
 				<table id="summary" class="table table-bordered table-responsive"
 					style="width: 100%">
@@ -54,14 +54,22 @@
 							<th>Count by Reject Reason</th>
 						</tr>
 					</thead>
+					<tbody>
+						<tr><td>Customer Number: 000976683144</td>
+						<td><table border="1" >
+								<tr><td>Wrong Price</td><td>10</td></tr>
+								<tr><td>Not on Contract</td><td>2</td></tr>
+								<tr><td>Expired Contracts</td><td>4</td></tr>
+								<tr><td>Not Eligible</td><td>3</td></tr>
+							</table>
+						</td>
+					</tbody>
 				</table>
 			</div>
 		</div>
-		</div>
-		
 		
 		<br>
-		<div class="container">
+		
 		<div class="row card border-info mb-3" style="width: 100%" >
 		  <div class="card-header">Item Level Data</div>
 		  <div class="card-body text-info">
@@ -76,6 +84,29 @@
 							<th>Reject Reasons</th>
 						</tr>
 					</thead>
+					<tbody>
+						<tr>
+							<td>10089667</td>
+							<td>11112222201</td>
+							<td>90</td>
+							<td>2020-01-01</td>
+							<td>Wrong Price</td>
+						</tr>
+						<tr>
+							<td>10089667</td>
+							<td>11112222202</td>
+							<td>80</td>
+							<td>2020-01-01</td>
+							<td>Not on Contract</td>
+						</tr>
+						<tr>
+							<td>10089667</td>
+							<td>11112222201</td>
+							<td>60</td>
+							<td>2020-01-01</td>
+							<td>Not Eligible</td>
+						</tr>
+					</tbody>
 				</table>
 			</div>
 		</div>
