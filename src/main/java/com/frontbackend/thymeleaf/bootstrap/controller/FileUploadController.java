@@ -34,7 +34,7 @@ public class FileUploadController {
     public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
         
-        File tempFile = new File("/home/sananthaneni/git/Novation/tutorials/thymeleaf/thymeleaf-bootstrap-tabs/src/main/resources/"+file.getOriginalFilename());
+        File tempFile = new File("/workspaces/validate-pro/"+file.getOriginalFilename());
         try {
 			file.transferTo(tempFile);
 			
@@ -57,7 +57,7 @@ public class FileUploadController {
 			
 			ObjectMapper objectMapper = new ObjectMapper();
 			
-			objectMapper.writeValue(new File("/home/sananthaneni/git/Novation/output/files.json"), cbFiles);
+			objectMapper.writeValue(new File("/workspaces/validate-pro/files.json"), cbFiles);
 			
 			
 			
