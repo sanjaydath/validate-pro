@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -33,6 +34,10 @@ public class EmployeeService {
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
+    @Value("${localDir}")
+    public String localDir;
+    
+    
     public PageArray getEmployeesArray(PagingRequest pagingRequest) {
         pagingRequest.setColumns(Stream.of("name", "position", "office", "start_date", "salary")
                                        .map(Column::new)
@@ -59,7 +64,7 @@ public class EmployeeService {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            List<ChargeBackFile> employees = objectMapper.readValue(new File("/workspaces/validate-pro/files.json"),
+            List<ChargeBackFile> employees = objectMapper.readValue(new File(localDir,"files.json"),
                     new TypeReference<List<ChargeBackFile>>() {
                     });
 
