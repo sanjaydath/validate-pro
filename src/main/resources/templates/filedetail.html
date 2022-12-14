@@ -36,10 +36,66 @@
 			</div>
 		</div>
 	</nav>
+	
+	
 
 	<div class="container">
 	<h2>Chargebacks</h2>
 	<br>
+		<div>
+			<div class="card-header">Summary</div>
+			<div>
+			
+			<table class="table table-bordered table-sm ">
+				<thead>
+						<tr class="card-title" >
+							
+						</tr>
+					</thead>
+    <thead class="thead-dark">
+        <tr>
+            <th>Header Data</th>
+			<th>Count by Reject Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+    	<tr><td>Customer Number: 10089667</td>
+						<td>
+							<table border="1" >
+									<tbody>
+										<tr class="clickable" data-toggle="collapse"
+											data-target="#group-of-rows-7" aria-expanded="false"
+											aria-controls="group-of-rows-7">
+											<td><i class="fa fa-folder" ></i>Reason</td>
+											<td><i class="fa fa-folder"></i>Count</td>
+										</tr>
+									</tbody>
+									<tbody id="group-of-rows-7" class="collapse">
+										<tr class="table-warning">
+											<td><i class="fa fa-folder-open"></i>Wrong Price</td>
+											<td>1</td>
+										</tr>
+										<tr class="table-warning">
+											<td><i class="fa fa-folder-open"></i>Not on Contract</td>
+											<td>1</td>
+										</tr>
+										<tr class="table-warning">
+											<td><i class="fa fa-folder-open"></i>Expired Contracts</td>
+											<td>1</td>
+										</tr>
+										<tr class="table-warning">
+											<td><i class="fa fa-folder-open"></i>Not Eligible</td>
+											<td>1</td>
+										</tr>
+									</tbody>
+							</table>
+						</td>
+						</tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+		<!-- 
 		<div class="row card border-info mb-3" style="width: 100%" >
 		  <div class="card-header">Summary :
 		  <h2 class="bg-success" th:text="${fileName}"></h2>
@@ -67,56 +123,101 @@
 				</table>
 			</div>
 		</div>
-		
-		<br>
-		
-		<div class="row card border-info mb-3" style="width: 100%" >
-		  <div class="card-header">Rejected Item Details</div>
-		  <div class="card-body text-info">
-				<table id="items" class="table table-bordered table-responsive"
-					style="width: 100%">
-					<thead>
+		 -->
+		<div>
+			<div class="card-header">Rejected Item Details</div>
+			<div>
+			
+			<table class="table table-bordered table-sm ">
+				<thead>
 						<tr class="card-title" >
-							<th>Customer ID</th>
-							<th>Product ID</th>
-							<th>Product Price</th>
-							<th>Date</th>
-							<th>Rejected Reasons</th>
+							
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>10089667</td>
-							<td>11112222201</td>
-							<td>100</td>
-							<td>2021-01-01</td>
-							<td>Wrong Price</td>
-						</tr>
-						<tr>
-							<td>10089667</td>
-							<td>111122222021111</td>
-							<td>80</td>
-							<td>2022-01-01</td>
-							<td>Not on Contract</td>
-						</tr>
-						<tr>
-							<td>10089667</td>
-							<td>11112222201</td>
-							<td>60</td>
-							<td>2024-04-01</td>
-							<td>Not Eligible</td>
-						</tr>
-						<tr>
-							<td>10089667</td>
-							<td>11112222202</td>
-							<td>60</td>
-							<td>2019-01-01</td>
-							<td>Expired Contracts</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+    <thead class="thead-dark">
+        <tr>
+            <th>Customer ID</th>
+			<th>Product ID</th>
+			<th>Product Price</th>
+			<th>Date</th>
+			<th>Rejected Reasons</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-1" aria-expanded="false" aria-controls="group-of-rows-1">
+            <td><i class="fa fa-folder"></i>10089667</td>
+			<td>11112222201</td>
+			<td>100</td>
+			<td>2021-01-01</td>
+			<td>Wrong Price</td>
+        </tr>
+    </tbody>
+    <tbody id="group-of-rows-1" class="collapse">
+        <tr class="table-info">
+            <td><i class="fa fa-folder-open"></i></td>
+            <td>11112222201</td>
+            <td>90</td>
+            <td>2021-01-01</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-2" aria-expanded="false" aria-controls="group-of-rows-2">
+            <td><i class="fa fa-folder"></i>10089667</td>
+			<td>11112222201</td>
+			<td>60</td>
+			<td>2024-04-01</td>
+			<td>Not Eligible</td>
+        </tr>
+    </tbody>
+    <tbody id="group-of-rows-2" class="collapse">
+        <tr class="table-info">
+            <td><i class="fa fa-folder-open"></i></td>
+            <td>11112222201</td>
+            <td>60</td>
+            <td>2024-04-01</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-3" aria-expanded="false" aria-controls="group-of-rows-3">
+            <td><i class="fa fa-folder"></i>10089667</td>
+			<td>111122222021111</td>
+			<td>80</td>
+			<td>2022-01-01</td>
+			<td>Not on Contract</td>
+        </tr>
+    </tbody>
+    <tbody id="group-of-rows-3" class="collapse">
+        <tr class="table-info">
+            <td><i class="fa fa-folder-open"></i></td>
+            <td>111122222021111</td>
+            <td>NA</td>
+            <td>NA</td>
+        </tr>
+    </tbody>
+    
+     <tbody>
+        <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-4" aria-expanded="false" aria-controls="group-of-rows-4">
+            <td><i class="fa fa-folder"></i>10089667</td>
+			<td>11112222202</td>
+			<td>60</td>
+			<td>2019-01-01</td>
+			<td>Expired Contracts</td>
+        </tr>
+    </tbody>
+    <tbody id="group-of-rows-4" class="collapse">
+        <tr class="table-info">
+            <td><i class="fa fa-folder-open"></i></td>
+            <td>11112222202</td>
+            <td>60</td>
+            <td>2021-01-01</td>
+        </tr>
+    </tbody>
+    
+    
+</table>
+</div>
 		</div>
+		
 		</div>
 
 	<script th:src="@{../webjars/jquery/jquery.min.js}"></script>
